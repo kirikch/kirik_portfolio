@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "msedge",
+            "request": "launch",
+            "name": "Open laba1.html in Edge",
+            "file": "c:\\WEB\\laba1.html",
+            "runtimeExecutable": "C:\\Program Files\\Microsoft\\Edge\\Application\\",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
