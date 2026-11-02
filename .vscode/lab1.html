@@ -1,78 +1,394 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>4 правила вёрстки</title>
-    <link rel="stylesheet" href="https://code.s3.yandex.net/web-code/fonts/fonts.css" />
-    <link rel="stylesheet" href="styles/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портфолио</title>
+    <!-- Подключение шрифтов Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- БАЗОВЫЕ СТИЛИ --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000000; /* Темный фон */
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 1. ШАПКА САЙТА --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgb(19, 10, 15);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #dd48bd; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #dd48bd;
+        }
+
+        .btn {
+            background-color: #dd48bd;
+            color: rgb(19, 10, 15);;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #dd48bd;
+            transform: translateY(-2px);
+        }
+
+        /* --- 2. БЛОК ПРИВЕТСТВИЕ --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: #dd48bd;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        /* --- ОБЩИЕ СТИЛИ ДЛЯ СЕКЦИЙ --- */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        /* --- БЛОК ОБО МНЕ --- */
+        #about {
+            background-color: rgb(19, 10, 15);
+        }
+
+        #about p {
+            max-width: 800px; 
+            color: #cbd5e1; 
+            font-size: 18px; 
+            line-height: 1.8;
+        }
+
+        /* --- 3. МОИ НАВЫКИ --- */
+        .skills-wrapper {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .skills-photo img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid #dd48bd;
+        }
+
+        .skills-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .skills-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #dd48bd;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* --- 4. МЕДИА (ВИДЕО И ФОТО) --- */
+        .media-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .media-box {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgb(19, 10, 15);;
+        }
+
+        .media-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-box iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            border: none;
+            display: block;
+        }
+
+        /* --- 5. ПОДВАЛ (КОНТАКТЫ) --- */
+        footer {
+            background-color: #000000;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgb(19, 10, 15);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-title {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contacts a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #94a3b8;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .contacts a:hover {
+            color: #dd48bd;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #000000;
+            color: #64748b;
+        }
+
+        /* --- АДАПТИВ ДЛЯ МОБИЛЬНЫХ --- */
+        @media (max-width: 768px) {
+            header { padding: 15px 0; }
+            nav { display: none; } /* Скрываем меню на телефонах для простоты */
+            .hero-content h1 { font-size: 36px; }
+            .hero-content p { font-size: 16px; }
+            .skills-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .skills-photo img {
+                width: 100%;
+                max-width: 300px;
+                height: 300px;
+            }
+            .skills-list li { text-align: left; }
+            .media-grid { grid-template-columns: 1fr; }
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="overlay">
-            <h1 class="header-title">Четыре правила вёрстки</h1>
+
+    <!-- 1. ШАПКА САЙТА -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                KIRIK
+            </div>
+            <nav>
+                <a href="#about">Обо мне</a>
+                <a href="#skills">Навыки</a>
+                <a href="#media">Галерея</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+            <a href="#contacts" class="btn">Написать мне</a>
         </div>
     </header>
 
-    <section class="content">
-        <div class="card">
-            <img
-                class="card-image"
-                src="https://code.s3.yandex.net/web-code/images/freetrack/04/card-1.jpg"
-                alt="Неоновые лампочки в виде символов светятся красным"
-            />
-            <h3 class="card-title">Пустота</h3>
-            <p class="card-text">
-                Простое правило, которое часто нарушают: ставить рядом элементы с
-                похожим смыслом и окружать их пустым пространством. Пустота — мощное
-                средство воздействия.
-            </p>
-        </div>
+    <main>
+        <!-- 2. БЛОК ПРИВЕТСТВИЕ -->
+        <section id="hero">
+            <div class="container hero-content">
+                <h1>Всем привет, меня зовут <span>Кира</span></h1>
+                <p>Я программист и создатель этого блога. Здесь я пишу о всяких вещах, с которыми сталкиваюсь, будучи программистом, а также обо всем, что связано с веб-разработкой.</p>
+                <a href="#about" class="btn">Узнать больше</a>
+            </div>
+        </section>
 
-        <div class="card no-right-margin">
-            <img
-                class="card-image"
-                src="https://code.s3.yandex.net/web-code/images/freetrack/04/card-2.jpg"
-                alt="Разметка теннисного корта крупным планом"
-            />
-            <h3 class="card-title">Сетка</h3>
-            <p class="card-text">
-                Размеры элементов и расстояния между ними укладываются в гармоничную
-                схему — её называют сеткой. Если элемент выпадает, зритель может это
-                заметить.
-            </p>
-        </div>
+        <!-- БЛОК ОБО МНЕ -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">Обо мне</h2>
+                <p>
+                    Программированием я заинтересовалась еще в 2019 году и начала изучать Pascal. Позже меня поддержал в этом школьный учитель информатики и стал помогать с Python. Далее в мою жизнь пришел C/С++/С#. Сейчас продолжаю развиваться, изучать HTML и CSS и не планирую останавливаться!
+                </p>
+            </div>
+        </section>
 
-        <div class="card">
-            <img
-                class="card-image"
-                src="https://code.s3.yandex.net/web-code/images/freetrack/04/card-3.jpg"
-                alt="Абстрактное изображение шрифтов"
-            />
-            <h3 class="card-title">Шрифты</h3>
-            <p class="card-text">
-                Не больше трёх шрифтов на сайт. Один для заголовков, второй — для всех
-                остальных текстов, третий — для выделения важных слов. Должно хватить.
-            </p>
-        </div>
+        <!-- 3. БЛОК "МОИ НАВЫКИ" -->
+        <section id="skills" style="background-color: rgb(19, 10, 15);">
+            <div class="container">
+                <h2 class="section-title">Мои навыки</h2>
+                <div class="skills-wrapper">
+                    <div class="skills-photo">
+                        <!-- ВАЖНО: Здесь стоит ссылка на картинку из интернета. Вы можете заменить её на свою -->
+                        <img src="my-photo.jpg" alt="Мое фото">
+                    </div>
+                    <div class="skills-info">
+                        <h3>Что я умею:</h3>
+                        <ul class="skills-list">
+                            <li>Знание базовых алгоритмов</li>
+                            <li>Умение постоянно учиться и обучаться</li>
+                            <li>Вёрстка адаптивных сайтов (HTML, CSS)</li>
+                            <li>Базовое понимание JavaScript</li>
+                            <li>Работа с Git и GitHub</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="card no-right-margin">
-            <img
-                class="card-image"
-                src="https://code.s3.yandex.net/web-code/images/freetrack/04/card-4.jpg"
-                alt="Градиентное изображение с цветами различных оттенков и эффектом размытия"
-            />
-            <h3 class="card-title">Цвета</h3>
-            <p class="card-text">
-                Обычно на сайте два цвета: ведущий и акцентный. Подобрать удачную
-                цветовую пару можно за счёт насмотренности или специальных
-                инструментов.
-            </p>
-        </div>
-    </section>
+        <!-- 4. БЛОК С ВИДЕО И ФОТО -->
+        <section id="media">
+            <div class="container">
+                <h2 class="section-title">Как я работаю</h2>
+                <div class="media-grid">
+                    <!-- Фото -->
+                    <div class="media-box">
+                        <img src="code.jpg" alt="Код на экране">
+                    </div>
+                    <!-- Видео (YouTube) -->
+                    <div class="media-box">
+                        <iframe src="https://rutube.ru/play/embed/9c14c4b1aa4f7e1fbbb2ef1850ce4167/?r=plwd" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <footer class="footer">
-        <h4 class="footer-author">Я х Практикум</h4>
+    <!-- 5. БЛОК ПОДВАЛ (КОНТАКТЫ) -->
+    <footer id="contacts">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h2 class="footer-title">Хотите связаться?</h2>
+                    <p style="color: #94a3b8; max-width: 400px;">Всегда открыта для новых проектов, идей и просто хорошего общения. Пишите мне!</p>
+                </div>
+                <div class="contacts">
+                    <!-- ВАЖНО: Замените эти данные на свои -->
+                    <p>📧 kiracheloguzova@yandex.ru</p>
+                    <a href="https://vk.com/k.cheloguzova" target="_blank">🔗 Моя страница ВКонтакте</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2026. KIRIK.
+            </div>
+        </div>
     </footer>
+
 </body>
 </html>
